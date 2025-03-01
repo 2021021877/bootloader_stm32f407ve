@@ -41,7 +41,6 @@
 - **主控芯片**: STM32F407VET6 (Cortex-M4, 168MHz)
 - **外设**:
   - USB Type-C/UART 转 USB 模块
-  - CAN 收发器 (如 TJA1050)
   - 启动模式引脚配置: `BOOT0=1`, `BOOT1=0`
 - **工具**:
   - ST-Link/V2 编程器

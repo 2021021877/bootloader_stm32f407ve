@@ -34,3 +34,7 @@
 .\output\main.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h
 .\output\main.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\output\main.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
+.\output\main.o: .\BSP\bsp_key.h
+.\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\main.o: .\BSP\bsp_uart.h
+.\output\main.o: .\BSP\flash.h

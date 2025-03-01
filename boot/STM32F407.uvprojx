@@ -276,7 +276,7 @@
               <OCR_RVCT4>
                 <Type>1</Type>
                 <StartAddress>0x8000000</StartAddress>
-                <Size>0x80000</Size>
+                <Size>0x8000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F40_41xxx</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;.\System;.\Libraries;.\Libraries\Core;.\Libraries\Core\Startup;.\Libraries\STM32F4xx_StdPeriph_Driver\inc;.\BSP\LED</IncludePath>
+              <IncludePath>.\User;.\System;.\Libraries;.\Libraries\Core;.\Libraries\Core\Startup;.\Libraries\STM32F4xx_StdPeriph_Driver\inc;.\BSP\LED;.\BSP</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -402,6 +402,23 @@
         </Group>
         <Group>
           <GroupName>BSP</GroupName>
+          <Files>
+            <File>
+              <FileName>bsp_key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\BSP\bsp_key.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\BSP\bsp_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\BSP\flash.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>STARTUP</GroupName>

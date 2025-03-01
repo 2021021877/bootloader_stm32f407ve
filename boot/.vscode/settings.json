@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "bsp_key.h": "c",
+        "stm32f4xx.h": "c",
+        "stdio.h": "c",
+        "bsp_uart.h": "c"
+    }
+}
