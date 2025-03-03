@@ -1,4 +1,3 @@
-
 #include "stm32f4xx.h"
 #include "bsp_key.h"
 #include "bsp_uart.h"
@@ -11,36 +10,41 @@ int fputc(int ch, FILE *f)
     return ch;
 }
 #define APP_FLASH_ADDR             (0x8008000)
-/* ¶¨ÒåÀàĞÍ */
+/* å®šä¹‰ç±»å‹ */
 typedef void (*pFunction)(void);
 
 /* APP flash address */
-
+uint8_t tab_1024[1024];
 
 void jump_to_app(void)
 {
   uint32_t JumpAddress;
   pFunction Jump_To_Application;
 
-  /* ¼ì²éÕ»¶¥µØÖ·ÊÇ·ñºÏ·¨ */
+  /* æ£€æŸ¥æ ˆé¡¶åœ°å€æ˜¯å¦åˆæ³• */
   if(((*(__IO uint32_t *)APP_FLASH_ADDR) & 0x2FFE0000) == 0x20000000)
   {
-    /* ÆÁ±ÎËùÓĞÖĞ¶Ï£¬·ÀÖ¹ÔÚÌø×ª¹ı³ÌÖĞ£¬ÖĞ¶Ï¸ÉÈÅ³öÏÖÒì³£ */
+    /* å±è”½æ‰€æœ‰ä¸­æ–­ï¼Œé˜²æ­¢åœ¨è·³è½¬è¿‡ç¨‹ä¸­ï¼Œä¸­æ–­å¹²æ‰°å‡ºç°å¼‚å¸¸ */
     __disable_irq();
 
-    /* ÓÃ»§´úÂëÇøµÚ¶ş¸ö ×Ö Îª³ÌĞò¿ªÊ¼µØÖ·(¸´Î»µØÖ·) */
+    /* ç”¨æˆ·ä»£ç åŒºç¬¬äºŒä¸ª å­— ä¸ºç¨‹åºå¼€å§‹åœ°å€(å¤ä½åœ°å€) */
     JumpAddress = *(__IO uint32_t *) (APP_FLASH_ADDR + 4);
 
     /* Initialize user application's Stack Pointer */
-    /* ³õÊ¼»¯APP¶ÑÕ»Ö¸Õë(ÓÃ»§´úÂëÇøµÄµÚÒ»¸ö×ÖÓÃÓÚ´æ·ÅÕ»¶¥µØÖ·) */
+    /* åˆå§‹åŒ–APPå †æ ˆæŒ‡é’ˆ(ç”¨æˆ·ä»£ç åŒºçš„ç¬¬ä¸€ä¸ªå­—ç”¨äºå­˜æ”¾æ ˆé¡¶åœ°å€) */
     __set_MSP(*(__IO uint32_t *) APP_FLASH_ADDR);
 
-    /* ÀàĞÍ×ª»» */
+    /* ç±»å‹è½¬æ¢ */
     Jump_To_Application = (pFunction) JumpAddress;
 
-    /* Ìø×ªµ½ APP */
+    /* è·³è½¬åˆ° APP */
     Jump_To_Application();
   }
+}
+static void delay_ms(uint32_t ms)                     // å®šä¹‰ä¸€ä¸ªmså»¶æ—¶å‡½æ•°ï¼Œå‡å°‘ç§»æ¤æ—¶å¯¹å¤–éƒ¨æ–‡ä»¶ä¾èµ–; æœ¬å‡½æ•°ä»…ä½œç²—ç•¥å»¶æ—¶ä½¿ç”¨ï¼Œè€Œå¹¶éç²¾å‡†å»¶æ—¶;
+{
+    ms = ms * 42001;                                  // æ³¨æ„ï¼šæ­¤å‚è€ƒå€¼è¿è¡Œæ¡ä»¶ï¼šæ‰“å‹¾ Options/ c++ / One ELF Section per Function
+    for (uint32_t i = 0; i < ms; i++);                // æ³¨æ„ç³»ç»Ÿæ—¶é’Ÿä¸‹ï¼Œå¤§çº¦å¤šå°‘ä¸ªç©ºå¾ªç¯è€—æ—¶1ms
 }
 int main(void)
 {
@@ -58,6 +62,3 @@ int main(void)
 	
     }
 }
-
-
-
